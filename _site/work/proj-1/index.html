@@ -1,8 +1,86 @@
-<p><img src="assets/img/work/proj-1/img1.jpg" alt="Typo International" /></p>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
-<p>TYPO: International Design Talks is an annual event held in Berlin, London, and San Francisco. This promotional project is developed to market the event for the designindustry. The use of patterns, sophisticated color scheme and typography are applied for the print and mobile application.</p>
+<html>
+<head>
+<title>BANK CHEQUE</title>
+<script language="JavaScript">
+function makeArray0() {
+  for (i = 0; i<makeArray0.arguments.length; i++)
+   this[i] = makeArray0.arguments[i];
+}
 
-<p><img src="assets/img/work/proj-1/img2.jpg" alt="Typo International" />
-<img src="assets/img/work/proj-1/img3.jpg" alt="Typo International" />
-<img src="assets/img/work/proj-1/img4.jpg" alt="Typo International" />
-<img src="assets/img/work/proj-1/img5.jpg" alt="Typo International" /></p>
+var numbers = new makeArray0('','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifthteen','sixteen','seventeen','eighteen','nineteen');
+
+var numbers10 = new makeArray0('','ten','twenty','thirty','fourty','fifty','sixty','seventy','eighty','ninety');
+
+function chequeAmount(input) {
+  var dollars = Math.floor(input);
+  var cents = Math.round((input*100 - dollars*100));
+
+  var thousands = (dollars - dollars % 1000) / 1000;
+  dollars -= thousands * 1000;
+  var hundreds = (dollars - dollars % 100) / 100;
+  dollars -= hundreds * 100;
+
+  var output = '';
+
+  output += (thousands > 0 ? fN(thousands) + ' thousand ' : '') +
+            (hundreds > 0 ? fN(hundreds) + ' hundred ' : '') +
+            (dollars > 0 ? fN(dollars) + ' ' : '') +
+            ((thousands > 0 || hundreds > 0 || dollars > 0) ? 'dollars ' : '') +
+            ((Math.floor(input) > 0 && cents > 0) ? 'and ' : '') +
+            (cents > 0 ? fN(cents) + ' cents' : '');
+
+  return output.substring(0,1).toUpperCase() + output.substring(1);
+}
+
+function fN(i) {
+  if (i<20) return numbers[i];
+  var tens = (i - i % 10) / 10, units = i - (i - i % 10);
+  return numbers10[tens] + ((tens > 0 && units > 0) ? '-' : '') + numbers[units];
+}
+</script>
+</head>
+<body>
+
+<form>
+
+
+<table>
+<tr>
+<th>BANK CHEQUE</th>
+
+</tr>
+
+<tr>
+<td>Date</td>
+<td><input type="text" name="date"></td>
+</tr>
+
+<tr>
+<td>Name</td>
+<td><input type="text" name="name"></td>
+</tr>
+
+<tr>
+<td>Amount($)</td>
+<td><input type="text" name="amount">
+</td>
+</tr>
+
+<tr>
+<td><input type="button" value="Submit" onClick="this.form.answer.value=chequeAmount(this.form.amount.value - 0)"></td>
+</tr>
+
+<tr>
+<td>Amount in Words:</td>
+</tr>
+
+<tr>
+<td><input type="text" name="answer" size="80"></td>
+</tr>
+</table>
+
+</form>
+</body>
+</html>
